@@ -13,6 +13,8 @@ node{
     stage ('transfer file'){
         sh label: '', script: '''id=$(aws autoscaling describe-auto-scaling-instances --region ap-south-1 --query AutoScalingInstances[].InstanceId --output text)
 ip=$(aws ec2 describe-instances --instance-ids $id --query \'Reservations[*].Instances[*].PublicIpAddress\' --output text)
+echo $ip > machine.txt
+ssh -oStrictHostKeyChecking=no -i ~/yulu.pem ubuntu@$ip
 scp -i /var/lib/jenkins/yulu.pem Dockerfile ubuntu@$ip:/home/ubuntu
 scp -i /var/lib/jenkins/yulu.pem MavenWebApp.war ubuntu@$ip:/home/ubuntu'''
 }
