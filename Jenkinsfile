@@ -21,7 +21,7 @@ scp -i /var/lib/jenkins/yulu.pem MavenWebApp.war ubuntu@$ip:/home/ubuntu'''
 stage ('deploy file'){
     sh label: '', script: '''filename="machine.txt"
 	while read -r line; do
-	ssh -oStrictHostKeyChecking=no -i ~/Downloads/yulu.pem ubuntu@$line sh 1.sh
+	ssh -oStrictHostKeyChecking=no -i ~/yulu.pem ubuntu@$line sh 1.sh
  	done < "$filename"
 '''
     
