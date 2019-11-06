@@ -19,13 +19,14 @@ echo $ip > machine.txt
 	ssh -oStrictHostKeyChecking=no -i ~/yulu.pem ubuntu@$line
 	scp -i /var/lib/jenkins/yulu.pem Dockerfile ubuntu@$line:/home/ubuntu
 	scp -i /var/lib/jenkins/yulu.pem MavenWebApp.war ubuntu@$line:/home/ubuntu
+	scp -i /var/lib/jenkins/yulu.pem deploy.sh  ubuntu@$line:/home/ubuntu
  	done < "$filename"
 '''
 }
 stage ('deploy file'){
     sh label: '', script: '''filename="machine.txt"
 	while read -r line; do
-	ssh -oStrictHostKeyChecking=no -i ~/yulu.pem ubuntu@$line sh 1.sh
+	ssh -oStrictHostKeyChecking=no -i ~/yulu.pem ubuntu@$line sh deploy.sh
  	done < "$filename"
 '''
     
