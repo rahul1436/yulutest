@@ -1,4 +1,6 @@
-mkdir test/
+docker stop sample
+docker rm sample
+docker rmi test
 cp Dockerfile MavenWebApp.war test/
 cd test/
 chmod +x Dockerfile
