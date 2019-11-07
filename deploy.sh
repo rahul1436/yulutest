@@ -1,6 +1,11 @@
 docker stop sample
 docker rm sample
 docker rmi test
+if [ -d "$test" ]; then
+echo "directory exists"
+else
+  mkdir test
+fi
 cp Dockerfile MavenWebApp.war test/
 cd test/
 chmod +x Dockerfile
