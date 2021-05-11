@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: private-reg-container
-    image: rahul1436/test:14
+    image: rahul1436/test:${BUILD_NUMBER}
   imagePullSecrets:
   - name: regcred
